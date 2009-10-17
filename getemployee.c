@@ -4,30 +4,26 @@
  *
  */
 #include <stdio.h>
+#include <string.h>
 #include <db.h>
 
-#define DATABASE "employees.db"
+#include "emp.h"
 
 int main()
 {
    DBT key, data;
-   DB *dbp;
+   DB *db;
    int ret;
-   struct data_struct {
-      int empid;
-      char lastname[50];
-      char firstname[50];
-      float salary;
-   } emp;
+   struct employeeRecord emp;
 
-   ret = db_create(&dbp, NULL, 0);
+   ret = db_create(&db, NULL, 0);
    if (ret != 0)
    {
       perror("create");
       return 1;
    }
 
-   ret = dbp->open(dbp, NULL, DATABASE, NULL, DB_BTREE, DB_CREATE, 0);
+   ret = db->open(db, NULL, DATABASE, NULL, DB_BTREE, DB_CREATE, 0);
    if (ret != 0)
    {
       perror("open: ");
@@ -49,7 +45,7 @@ int main()
       data.ulen = sizeof(emp);
       data.flags = DB_DBT_USERMEM;
 
-      ret = dbp->get(dbp, NULL, &key, &data, 0);
+      ret = db->get(db, NULL, &key, &data, 0);
       if (ret != 0)
       {
          printf("Employee ID does not exist\n");
@@ -60,6 +56,6 @@ int main()
       }
    }
 
-   dbp->close(dbp, 0);
+   db->close(db, 0);
    return 0;
 }
