@@ -5,6 +5,7 @@
  */
 #include <stdio.h>
 #include <string.h>
+#include <errno.h>
 #include <db.h>
 
 #include "emp.h"
@@ -12,21 +13,23 @@
 int main()
 {
    DBT key, data;
-   DB *db;
+   DB *db; // DB handle
    int ret;
    struct employeeRecord emp;
 
+   // Initialize our DB handle
    ret = db_create(&db, NULL, 0);
    if (ret != 0)
    {
-      perror("create");
+      fprintf(stderr, "Failed to initialize the database handle\n");
       return 1;
    }
 
+   // Open the existing DATABASE file or create a new one if it doesn't exist.
    ret = db->open(db, NULL, DATABASE, NULL, DB_BTREE, DB_CREATE, 0);
    if (ret != 0)
    {
-      perror("open: ");
+      fprintf(stderr, "Failed to open database file %s: %s\n", DATABASE, strerror(errno));
       return 1;
    }
 
