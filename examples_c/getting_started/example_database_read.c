@@ -264,12 +264,12 @@ show_vendor_record(char *vendor_name, DB *vendor_dbp)
         return (ret);
     } else {
         printf("\t\t%s\n", my_vendor.name);
-        printf("\t\t%s\n", my_vendor.street);
-        printf("\t\t%s, %s\n", my_vendor.city, my_vendor.state);
-        printf("\t\t%s\n\n", my_vendor.zipcode);
-        printf("\t\t%s\n\n", my_vendor.phone_number);
-        printf("\t\tContact: %s\n", my_vendor.sales_rep);
-        printf("\t\t%s\n", my_vendor.sales_rep_phone);
+        printf("\t\t地址: %s\n", my_vendor.street);
+        printf("\t\t      %s, %s\n", my_vendor.city, my_vendor.state);
+        printf("\t\t邮政编码: %s\n", my_vendor.zipcode);
+        printf("\t\t电话: %s\n", my_vendor.phone_number);
+        printf("\t\t销售代表: %s\n", my_vendor.sales_rep);
+        printf("\t\t电话: %s\n", my_vendor.sales_rep_phone);
     }
     return (0);
 }
