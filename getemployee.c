@@ -21,7 +21,7 @@ int main()
    ret = db_create(&db, NULL, 0);
    if (ret != 0)
    {
-      fprintf(stderr, "Failed to initialize the database handle\n");
+      fprintf(stderr, "Failed to initialize the database handle: %s\n", db_strerror(ret));
       return 1;
    }
 
@@ -29,7 +29,7 @@ int main()
    ret = db->open(db, NULL, DATABASE, NULL, DB_BTREE, DB_RDONLY, 0);
    if (ret != 0)
    {
-      fprintf(stderr, "Failed to open database file %s: %s\n", DATABASE, strerror(errno));
+      fprintf(stderr, "Failed to open database file %s: %s\n", DATABASE, db_strerror(ret));
       return 1;
    }
 
