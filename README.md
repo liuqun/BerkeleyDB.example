@@ -1,13 +1,13 @@
 # BerkeleyDB.example
 
-## emp.h
+## `employee_record.h`
 ```
-struct employeeRecord{
+typedef struct {
    int empid;
    char lastname[50];
    char firstname[50];
    float salary;
-};
+} employee_record_t;
 ```
 
 ## 4个样例程序

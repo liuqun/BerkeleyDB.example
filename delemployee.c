@@ -5,20 +5,14 @@
  */
 #include <stdio.h>
 #include <db.h>
-
-#define DATABASE "employees.db"
+#include "employee_record.h"
 
 int main()
 {
    DBT key;
    DB *dbp;
    int ret;
-   struct data_struct {
-      int empid;
-      char lastname[50];
-      char firstname[50];
-      float salary;
-   } emp;
+   employee_record_t emp;
 
    ret = db_create(&dbp, NULL, 0);
    if (ret != 0)

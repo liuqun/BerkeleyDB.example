@@ -8,14 +8,14 @@
 #include <errno.h>
 #include <db.h>
 
-#include "emp.h"
+#include "employee_record.h"
 
 int main()
 {
    DBT key, data;
    DB *db; // DB handle
    int ret;
-   struct employeeRecord emp;
+   employee_record_t emp;
 
    // Initialize our DB handle
    ret = db_create(&db, NULL, 0);
