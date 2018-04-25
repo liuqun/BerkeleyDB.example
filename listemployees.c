@@ -39,12 +39,10 @@ int main()
             {
                 memset(&key, 0, sizeof(DBT));
                 memset(&data, 0, sizeof(DBT));
-                data.data = &emp;
-                data.size = sizeof(emp);
-                data.flags = DB_DBT_USERMEM;
 
                 while (!(err = cursor->c_get(cursor, &key, &data, DB_NEXT)))
                 {
+                    memcpy(&emp, data.data, sizeof(employee_record_t));
                     printf("%d - %s,%s   $%.2lf\n", emp.empid, emp.lastname, emp.firstname, emp.salary);
                 }
 
